@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Tool>
+
+@{
+    ViewData["Title"] = "Tools Inventory";
+}
+
+<div class="container mt-4">
+    <h2>Tools Inventory</h2>
+
+    <table class="table table-bordered table-striped mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>English Name</th>
+                <th>Arabic Name</th>
+                <th>BMW Number</th>
+                <th>Cost Price</th>
+                <th>QR Tag</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="5" class="text-center">No tools found in the database.</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var tool in Model)
+                {
+                    <tr>
+                        <td>@tool.EnglishName</td>
+                        <td>@tool.ArabicName</td>
+                        <td>@tool.Bmwnumber</td>
+                        <td>@tool.CostPrice</td>
+                        <td><a asp-action="Details" asp-route-qrTag="@tool.QrTag" class="btn btn-sm btn-primary">
+                                View & Print Tag
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

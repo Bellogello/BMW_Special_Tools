@@ -1,0 +1,64 @@
+@model BMW_Special_Tools.Models.Tool
+
+@{
+    ViewData["Title"] = "Tool Details";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <!-- Tool Details Section -->
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-dark text-white">
+                    <h3 class="mb-0">@Model.EnglishName (@Model.ArabicName)</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <th>Internal Number:</th>
+                                <td>@Model.Number</td>
+                            </tr>
+                            <tr>
+                                <th>BMW Number:</th>
+                                <td><strong>@Model.Bmwnumber</strong></td>
+                            </tr>
+                            <tr>
+                                <th>Kit Number:</th>
+                                <td>@(Model.KitNumber ?? "N/A")</td>
+                            </tr>
+                            <tr>
+                                <th>Cost Price:</th>
+                                <td>$@Model.CostPrice</td>
+                            </tr>
+                            <tr>
+                                <th>Status ID:</th>
+                                <td>
+                                    <span class="badge bg-primary fs-6">@Model.StatusId</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- QR Code Section -->
+        <div class="col-md-4 text-center mt-4 mt-md-0">
+            <div class="card shadow-sm border-secondary">
+                <div class="card-body">
+                    <h5 class="card-title">Tracking Tag</h5>
+                    <p class="text-muted small">Scan with mobile device</p>
+                    
+                    <!-- Here is where the memory-generated image is rendered -->
+                    <img src="@ViewBag.QrCodeImage" alt="QR Code" class="img-fluid border p-2 mb-3" style="max-width: 250px;" />
+                    
+                    <p class="fw-bold font-monospace">@Model.QrTag</p>
+                    <button class="btn btn-outline-secondary w-100" onclick="window.print()">
+                        Print Sticker
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
